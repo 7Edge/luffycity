@@ -1,5 +1,6 @@
 <template>
     <div class='courses'>
+        <p>首页</p>
         <ul>
             <li></li>
         </ul>

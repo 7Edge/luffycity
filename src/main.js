@@ -4,25 +4,39 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import vuex from 'vuex'
+import axios from 'axios'
+
+import api from './api/api.js'
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios
 
 Vue.use(vuex)
 
 var store = new vuex.Store({
-  state:{
-    courses:[]
+  state: {
+    courses: [1]
   },
-  actions:{
-    
-  },
-  mutations:{
-    SET_COURSES(state, payload){
-      state.courses = payload;
+  actions: {
+    Init_Courses(context) {
+      api.getCourses(context);
+    },
+    add_course(context, course) {
+      context.commit('APPEND_COURSE', course)
     }
   },
-  getters:{
-
+  mutations: {
+    SET_COURSES(state, payload) {
+      state.courses = payload;
+    },
+    APPEND_COURSE(state, payload) {
+      state.courses.push(payload);
+    }
+  },
+  getters: {
+    all_course: state => {
+      return state.courses
+    }
   }
 })
 
@@ -32,6 +46,8 @@ new Vue({
   el: '#app',
   router,
   store: store,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
