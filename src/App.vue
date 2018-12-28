@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <topHead></topHead>
     <router-view/>
   </div>
 </template>
 
 <script>
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import Head from '@/components/Head'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    topHead: Head
+  }
 }
 </script>
 
@@ -18,6 +25,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>

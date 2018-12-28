@@ -9,7 +9,7 @@ Vue.config.productionTip = false
 
 Vue.use(vuex)
 
-var store = new vuex.store({
+var store = new vuex.Store({
   state:{
     courses:[]
   },
