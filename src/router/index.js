@@ -5,6 +5,7 @@ import Index from '@/components/Index'
 import Course from '@/components/Course'
 import Micro from '@/components/Micro'
 import News from '@/components/News'
+import CourseDetail from '@/components/CourseDetail'
 
 
 Vue.use(Router)
@@ -30,7 +31,12 @@ export default new Router({
       path: '/news',
       name: 'News',
       component: News
+    },
+    {
+      path: '/courses/:id',
+      name: 'CourseDetail',
+      component: CourseDetail
     }
   ],
-  mode: 'history'
+  // mode: 'history'
 })
