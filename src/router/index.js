@@ -6,6 +6,7 @@ import Course from '@/components/Course'
 import Micro from '@/components/Micro'
 import News from '@/components/News'
 import CourseDetail from '@/components/CourseDetail'
+import Login from '@/components/auth/Login'
 
 
 Vue.use(Router)
@@ -36,6 +37,11 @@ export default new Router({
       path: '/courses/:id',
       name: 'CourseDetail',
       component: CourseDetail
+    },
+    {
+      path: '/login/',
+      name: 'Login',
+      component: Login
     }
   ],
   // mode: 'history'

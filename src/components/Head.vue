@@ -23,16 +23,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
-                <router-link :to="{name:'Index'}">首页</router-link>
+              <router-link :to="{name:'Index'}">首页</router-link>
             </li>
             <li>
               <router-link :to="{name:'Courses'}">Luffxy学位</router-link>
             </li>
             <li>
-                <router-link :to="{name:'Mirco'}">深科技</router-link>
+              <router-link :to="{name:'Mirco'}">深科技</router-link>
             </li>
             <li>
-                <router-link :to="{name:'News'}">新闻</router-link>
+              <router-link :to="{name:'News'}">新闻</router-link>
             </li>
             <!-- <li class="dropdown">
               <a
@@ -64,7 +64,7 @@
                   <a href="#">One more separated link</a>
                 </li>
               </ul>
-            </li> -->
+            </li>-->
           </ul>
           <form class="navbar-form navbar-right">
             <div class="form-group">
@@ -72,7 +72,24 @@
             </div>
             <button type="submit" class="btn btn-info">Go</button>
           </form>
-        
+          
+            <div v-if="!this.$store.getters.logined">
+              <ul class="nav navbar-nav navbar-right">
+              <li>
+                <router-link :to="{name: 'Login'}">登录</router-link>
+              </li>
+              <li>
+                <a href>注册</a>
+              </li>
+              </ul>
+            </div>
+            <div v-else>
+              <ul class="nav navbar-nav navbar-right">
+              <li><a href=""> <strong> <span class="glyphicon glyphicon-user"></span> {{ get_userinfo.user }}</strong></a></li>
+              <li><a href="">注销</a></li>
+              </ul>
+            </div>
+          
         </div>
         <!-- /.navbar-collapse -->
       </div>
@@ -85,7 +102,15 @@
 export default {
   name: "hehe",
   data() {
-    return {};
+    return {
+    };
+  },
+  computed:{
+    get_userinfo:{
+      get(){
+        return this.$store.getters.get_online_userinfo;
+      }
+    }
   }
 };
 </script>
