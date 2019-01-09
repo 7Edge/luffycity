@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import vuex from 'vuex'
 import axios from 'axios'
+import vuecookie from 'vue-cookie'
 
 import api from './api/api.js'
 
@@ -13,6 +14,7 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios // 让所有Vue子对象都有$axios属性，属性对应的是axios
 
 Vue.use(vuex) // 使用vuex作为vue的插件。
+Vue.use(vuecookie)
 
 var store = new vuex.Store({ // 全局vuex存储
   state: {
@@ -55,7 +57,7 @@ var store = new vuex.Store({ // 全局vuex存储
       return Boolean(state.online_user_info.user_token && (expired >= curr_date))
     },
     get_online_userinfo: state => state.online_user_info,
-    
+
   }
 })
 
