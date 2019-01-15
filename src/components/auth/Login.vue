@@ -60,10 +60,8 @@ export default {
           }
         })
         .then(response => {
-        //   console.log(response);
           let data = response.data;
           if (data.code === 1000) {
-            //   console.log(data.code);
             let userinfo = {
               user: _that.username,
               user_token: data.user_token,
@@ -71,13 +69,11 @@ export default {
             };
             _that.$store.dispatch("login", userinfo);
           } else {
-            //   console.log(data.code);
-              alert(data.error);
+            alert(data.error);
           }
         })
         .catch(error => {
-        //   console.log(error);
-          alert(error)
+          alert(error);
         });
     }
   },
