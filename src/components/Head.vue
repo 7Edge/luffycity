@@ -86,7 +86,7 @@
             <div v-else>
               <ul class="nav navbar-nav navbar-right">
               <li><a href=""> <strong> <span class="glyphicon glyphicon-user"></span> {{ get_userinfo.user }}</strong></a></li>
-              <li><a href="">注销</a></li>
+              <li><a @click='logout' href>注销</a></li>
               </ul>
             </div>
           
@@ -105,6 +105,12 @@ export default {
     return {
     };
   },
+  methods: {
+    logout(){
+      this.$store.dispatch('logout');
+    }
+  }
+  ,
   computed:{
     get_userinfo:{
       get(){

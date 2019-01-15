@@ -19,11 +19,17 @@ Vue.use(vuecookie)
 var store = new vuex.Store({ // 全局vuex存储
   state: {
     courses: [], // 存储获取到的课程列表
-    online_user_info: {
+    _online_user_info: {
       user: null,
       user_token: null,
       expired: null,
     },
+    online_user_info: {
+      user: Vue.cookie.get('user'),
+      user_token: Vue.cookie.get('user_token'),
+      expired: Vue.cookie.get('expired'),
+    },
+    // online_user_info: Vue.cookie.get('userinfo'),
   },
   actions: {
     Init_Courses(context) { // 使用api模块提供的接口，发起ajax请求初始化获取课程列表。
@@ -32,8 +38,11 @@ var store = new vuex.Store({ // 全局vuex存储
     add_course(context, course) { // 添加课程
       context.commit('APPEND_COURSE', course)
     },
-    login(context, userinfo){ 
+    login(context, userinfo) {
       context.commit('ONLINE_USER', userinfo)
+    },
+    logout(context) {
+      context.commit('LOGOUT');
     }
   },
   mutations: { // 只有变化操作才定义mutations
@@ -43,9 +52,18 @@ var store = new vuex.Store({ // 全局vuex存储
     APPEND_COURSE(state, payload) { // 向state.courses列表中添加课程
       state.courses.push(payload);
     },
-    ONLINE_USER(state, payload) { // 更新登录用户信息
+    ONLINE_USER(state, payload) { // 更新登录用户信息,更新到两个位置store和cookie中
       state.online_user_info = payload;
+      Vue.cookie.set('user', payload.user, 7);
+      Vue.cookie.set('user_token', payload.user_token, 7);
+      Vue.cookie.set('expired', payload.expired, 7);
     },
+    LOGOUT(state) { // 注销当前用户，删除cookie
+      state.online_user_info = state._online_user_info;
+      Vue.cookie.delete('user');
+      Vue.cookie.delete('user_token');
+      Vue.cookie.delete('expired');
+    }
   },
   getters: { // 读取数据都定义
     all_course: state => { // store对外提供获取课程列表的服务
