@@ -26,7 +26,10 @@ export default new Router({
     {
       path: '/micro',
       name: 'Mirco',
-      component: Micro
+      component: Micro,
+      meta: {
+        requireAuth: true,
+      }
     },
     {
       path: '/news',

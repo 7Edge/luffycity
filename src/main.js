@@ -79,6 +79,17 @@ var store = new vuex.Store({ // 全局vuex存储
   }
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (store.getters.logined) {
+      next();
+    } else{
+      next({name: 'Login', query: {backUrl: to.fullPath}})
+    }
+  }else{
+    next();
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

@@ -68,6 +68,12 @@ export default {
               expired: data.expired
             };
             _that.$store.dispatch("login", userinfo);
+            let next = _that.$route.query.backUrl;
+            if (next){
+             _that.$router.push({path: next});              
+            }else {
+              _that.$router.push({name:'Index'});
+            }
           } else {
             alert(data.error);
           }
