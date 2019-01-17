@@ -29,6 +29,9 @@ var store = new vuex.Store({ // 全局vuex存储
       user_token: Vue.cookie.get('user_token'),
       expired: Vue.cookie.get('expired'),
     },
+    api_list: {
+      course_api: ''
+    }
     // online_user_info: Vue.cookie.get('userinfo'),
   },
   actions: {
@@ -79,11 +82,12 @@ var store = new vuex.Store({ // 全局vuex存储
   }
 })
 
+// 全局拦截器
 router.beforeEach((to, from, next) => {
-  if (to.meta.requireAuth) {
+  if (to.meta.requireAuth) { // 拦截需要认证的路由
     if (store.getters.logined) {
       next();
-    } else{
+    } else{ // 没有认证则跳转登陆路由
       next({name: 'Login', query: {backUrl: to.fullPath}})
     }
   }else{
