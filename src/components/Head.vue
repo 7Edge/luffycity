@@ -26,7 +26,10 @@
               <router-link :to="{name:'Index'}">首页</router-link>
             </li>
             <li>
-              <router-link :to="{name:'Courses'}">Luffxy学位</router-link>
+              <router-link :to="{name:'Courses'}">专题课</router-link>
+            </li>
+            <li>
+              <router-link :to="{name:'DegreeCourse'}">Luffxy学位</router-link>
             </li>
             <li>
               <router-link :to="{name:'Mirco'}">深科技</router-link>
